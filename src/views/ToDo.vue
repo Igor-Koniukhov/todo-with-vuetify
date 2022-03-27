@@ -1,18 +1,8 @@
 <template>
   <div class="home">
-    <v-list flat>
-      <v-list-item>
-        <template v-slot:default="{ active }">
-          <v-list-item-action>
-            <v-checkbox :input-value="active"></v-checkbox>
-          </v-list-item-action>
-
-          <v-list-item-content>
-            <v-list-item-title>Auto-add widgets</v-list-item-title>
-          </v-list-item-content>
-        </template>
-      </v-list-item>
-    </v-list>
+    <field-add-task />
+    <list-tasks v-if="$store.state.tasks.length" />
+    <no-tasks v-else />
   </div>
 </template>
 
@@ -20,7 +10,11 @@
 // @ is an alias to /src
 
 export default {
-  name: "Home",
-  components: {},
+  name: "ToDo",
+  components: {
+    FieldAddTask: require("@/components/Todo/FieldAddTask.vue").default,
+    ListTasks: require("@/components/Todo/ListTasks.vue").default,
+    NoTasks: require("@/components/Todo/NoTasks.vue").default,
+  },
 };
 </script>

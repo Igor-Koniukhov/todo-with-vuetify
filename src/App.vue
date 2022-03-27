@@ -59,12 +59,16 @@
 
     <v-main>
       <router-view></router-view>
+      <snack-bar/>
     </v-main>
   </v-app>
 </template>
 
 <script>
 export default {
+   components: {
+    'snack-bar': require('@/components/Shared/SnackBar.vue').default,
+  },
   data: () => ({
     drawer: null,
     items: [
@@ -72,5 +76,6 @@ export default {
       { title: "About", icon: "mdi-help-box", to: "/about" },
     ],
   }),
+ 
 };
 </script>
