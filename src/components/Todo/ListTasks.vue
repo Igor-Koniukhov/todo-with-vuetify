@@ -1,7 +1,7 @@
 <template>
   <v-list class="pt-0" flat>
     <task 
-    v-for="task in $store.state.tasks" 
+    v-for="task in $store.getters.tasksFiltered" 
     :task="task"
     :key="task.id"
       />

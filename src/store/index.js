@@ -5,6 +5,7 @@ Vue.use(Vuex);
 
 export default new Vuex.Store({
   state: {
+    search: null,
     tasks: [
       {
         id: 1,
@@ -23,7 +24,7 @@ export default new Vuex.Store({
         title: "Eat bananas",
         done: false,
         dueDate: null,
-      }
+      },
     ],
     snackbar: {
       show: false,
@@ -61,14 +62,17 @@ export default new Vuex.Store({
     hideSnackBar(state) {
       state.snackbar.show = false;
     },
-    updateTasktitle(state, payload) {     
+    updateTasktitle(state, payload) {
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
       task.title = payload.title;
     },
-    updateTaskDueDate(state, payload){
-      let task = state.tasks.filter((task)=> task.id===payload.id)[0]
-      task.dueDate=payload.dueDate;
-    }
+    updateTaskDueDate(state, payload) {
+      let task = state.tasks.filter((task) => task.id === payload.id)[0];
+      task.dueDate = payload.dueDate;
+    },
+    setSearch(state, value) {
+      state.search = value;
+    },
   },
   actions: {
     addTask({ commit }, newTaskTitle) {
@@ -83,11 +87,21 @@ export default new Vuex.Store({
       commit("updateTasktitle", payload);
       commit("showSnackbar", "Task updated!");
     },
-    updateTaskDueDate({commit}, payload){
-      commit('updateTaskDueDate', payload)
-      commit("showSnackbar", "Date updated!")
-
+    updateTaskDueDate({ commit }, payload) {
+      commit("updateTaskDueDate", payload);
+      commit("showSnackbar", "Date updated!");
+    },
+  },
+  getters:{
+    tasksFiltered(state){
+      if(!state.search){
+        return state.tasks
+      }
+      return state.tasks.filter(task =>
+         task.title.toLowerCase()
+         .includes(state.search.toLowerCase()))
     }
+
   },
   modules: {},
 });
