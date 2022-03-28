@@ -23,14 +23,7 @@
       </v-list>
     </v-navigation-drawer>
 
-    <v-app-bar
-      app
-      color="primary"
-      dark      
-      src="rus_nax.jpeg"
-      prominent        
-      
-    >
+    <v-app-bar app color="primary" dark src="rus_nax.jpeg" prominent>
       <template v-slot:img="{ props }">
         <v-img
           v-bind="props"
@@ -39,35 +32,25 @@
       </template>
 
       <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
-      
+
       <v-toolbar-title>UrgentaOpera</v-toolbar-title>
 
       <v-spacer></v-spacer>
-
-      <v-btn icon>
-        <v-icon>mdi-magnify</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-heart</v-icon>
-      </v-btn>
-
-      <v-btn icon>
-        <v-icon>mdi-dots-vertical</v-icon>
-      </v-btn>
+      <search />
     </v-app-bar>
 
     <v-main>
       <router-view></router-view>
-      <snack-bar/>
+      <snack-bar />
     </v-main>
   </v-app>
 </template>
 
 <script>
 export default {
-   components: {
-    'snack-bar': require('@/components/Shared/SnackBar.vue').default,
+  components: {
+    "snack-bar": require("@/components/Shared/SnackBar.vue").default,
+    search: require("@/components/Tools/Search.vue").default,
   },
   data: () => ({
     drawer: null,
@@ -76,6 +59,5 @@ export default {
       { title: "About", icon: "mdi-help-box", to: "/about" },
     ],
   }),
- 
 };
 </script>
