@@ -1,8 +1,13 @@
 <template>
   <div class="home">
     <field-add-task />
-    <list-tasks v-if="$store.state.tasks.length" />
+    <v-row>
+       <list-tasks class="ma-1" v-if="$store.state.tasks.length" />
+    
     <no-tasks v-else />
+    </v-row>
+   
+    
   </div>
 </template>
 
