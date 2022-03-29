@@ -1,6 +1,6 @@
 # Todo - simple task manager with draggable tasks
 In that project used such technologies and libs:
-- vue2 + [vuetify](https://vuetifyjs.com/en/);
+- vue2 + [vuetify](https://vuetifyjs.com/en/), scss, js;
 - [Material Design Icons](https://materialdesignicons.com/);
 - [Stunning free images](https://pixabay.com/);
 - js library for date format - [date-fns](https://date-fns.org/);
