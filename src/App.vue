@@ -37,8 +37,9 @@
           <search />
         </v-row>
         <v-row>
-          <v-toolbar-title class="ml-4" >UrgentaOpera</v-toolbar-title>
+          <v-toolbar-title class="ml-4 text-h4">UrgentaOpera</v-toolbar-title>
         </v-row>
+        <live-date-time></live-date-time>
       </v-container>
     </v-app-bar>
     <v-main>
@@ -49,10 +50,13 @@
 </template>
 
 <script>
+
 export default {
   components: {
-    "snack-bar": require("@/components/Shared/SnackBar.vue").default,
-    search: require("@/components/Tools/Search.vue").default,
+    'snack-bar': require("@/components/Shared/SnackBar.vue").default,
+    'search': require("@/components/Tools/Search.vue").default,
+    'live-date-time': require("@/components/Tools/LiveDateTime.vue").default
+   
   },
   data: () => ({
     drawer: null,
