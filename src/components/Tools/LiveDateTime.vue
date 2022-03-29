@@ -1,12 +1,14 @@
 <template>
-  <div class="text-subtitle-1 mt-1 ml-1 federica-font federica-font__date">
-    {{ date }}
+  <div
+    class="text-subtitle-1 mt-1 ml-1 ">
+   <small>  {{ date }}</small>
   </div>
 </template>
 
 <script>
 import { format } from "date-fns";
 export default {
+  props: ["drawer"],
   data() {
     return {
       date: "",
@@ -27,7 +29,7 @@ export default {
 <style lang="scss">
 .federica-font {
   &__date {
-    color: rgba(0, 0, 0, 0.9);
+    color: rgba(250, 250, 250, 0.9);
   }
 }
 </style>

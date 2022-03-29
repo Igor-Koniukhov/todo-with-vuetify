@@ -1,13 +1,19 @@
 <template>
   <v-app id="inspire">
-    <v-navigation-drawer v-model="drawer" app>
-      <v-img height="170" src="ukraine.png">
+    <v-navigation-drawer v-model="drawer" :mobile-breakpoint="768" app>
+      <v-img class="avatar-back" height="170" src="wheat.jpg">
         <div class="img-justify pt-6">
           <v-avatar size="60">
-            <img class="img-avatar" src="i_koniukhov.jpg" alt="Igor" />
+            <img
+             class="img-avatar"
+             src="i_koniukhov.jpg"
+              alt="Igor"
+               />
           </v-avatar>
-          <div class="avatar-text text-subtitle-1">Koniukhov Igor</div>
-          <div class="avatar-text text-subtitle-2"> <small>ikoniukov </small> </div>
+          <div class="avatar-text avatar-text__frederica">Koniukhov Igor</div>
+          <div class="avatar-text ">
+            <small>ikoniukov </small>
+          </div>
         </div>
       </v-img>
       <v-list dense nav>
@@ -36,22 +42,29 @@
           v-bind="props"
           :gradient="
             !drawer
-              ? 'to top right, rgba(55,236,186,.7), rgba(25,32,72,.5)'
-              : 'to top right ,  rgba(231, 197, 75, .8), rgba(231, 197, 75, .5)'
+              ? 'to top right, rgba(0,0,0,.3), rgba(25,32,72,.1)'
+              : 'to top right ,  rgba(0, 0, 0, .5), rgba(231, 197, 75, .2)'
           "
         >
         </v-img>
       </template>
-      <v-container class="pa-0">
+      <v-container
+       class="header-container pa-0"
+       >
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
           <search />
         </v-row>
         <v-row class="mt-8">
-          <h1 class="ml-4 text-h5 federica-font mt-8">UrgentaOpera</h1>
+          <h1
+            class="ml-4 text-h5 mt-8 federica-font"
+            
+          >
+            UrgentaOpera
+          </h1>
         </v-row>
-        <live-date-time></live-date-time>
+        <live-date-time :drawer="drawer"></live-date-time>
       </v-container>
     </v-app-bar>
     <v-main>
@@ -78,21 +91,48 @@ export default {
 };
 </script>
 <style lang="scss">
+.header-container{
+  max-width: none !important;
+}
+
 .container {
   .federica-font {
     font-family: "Fredericka the Great", cursive !important;
+    
+    }
+    .federica-font__red {
+      font-family: "Fredericka the Great", cursive !important;
+      color: red;
   }
 }
 .v-responsive__content {
   display: flex;
   justify-content: center;
   .img-justify {
-    display: flex;    
+    display: flex;
     align-items: center;
     flex-direction: column;
   }
 }
-.avatar-text{
-  color: #333
+.avatar-text {
+  color: #f3f3f3;  
+  z-index: 150;
+  &__frederica{
+    font-family: "Fredericka the Great", cursive ;
+  }
+  
+}
+.avatar-back {
+  position: relative;  
+  &:before {
+    display: block;
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5);
+  }
 }
 </style>
