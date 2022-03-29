@@ -61,7 +61,7 @@
             class="ml-4 text-h5 mt-8 federica-font"
             
           >
-            UrgentaOpera
+            {{$store.state.appTitle}}
           </h1>
         </v-row>
         <live-date-time :drawer="drawer"></live-date-time>
@@ -88,6 +88,11 @@ export default {
       { title: "About", icon: "mdi-help-box", to: "/about" },
     ],
   }),
+  computed:{
+    appTitle(){
+      return process.env.VUE_APP_TITLE
+    }
+  }
 };
 </script>
 <style lang="scss">
