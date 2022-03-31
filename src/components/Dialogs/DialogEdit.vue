@@ -4,7 +4,8 @@
       <v-card-title class="text-h5"> Edit task </v-card-title>
       <v-card-text>
         Edit the title of this task:
-        <v-text-field v-model="taskTitle" @keyup.enter="saveTask" />
+        <v-text-field
+        v-model="taskTitle" @keyup.enter="saveTask" />
       </v-card-text>
       <v-card-actions>
         <v-spacer></v-spacer>

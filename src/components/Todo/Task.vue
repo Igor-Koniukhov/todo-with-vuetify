@@ -13,7 +13,6 @@
           <div
             class="text-in-task"
             :class="{ 'text-decoration-line-through': task.done }"
-            
           >
             {{ task.title }}
           </div>
@@ -25,14 +24,13 @@
             {{ task.dueDate | niceDate }}
           </v-list-item-action-text>
         </v-list-item-action>
-
-        <v-list-item-action>
-          <task-menu :task="task" />
-        </v-list-item-action>
         <v-list-item-action v-if="$store.state.sorting">
           <v-btn icon class="handle">
             <v-icon>mdi-drag-horizontal</v-icon>
           </v-btn>
+        </v-list-item-action>
+        <v-list-item-action>
+          <task-menu :task="task" />
         </v-list-item-action>
       </template>
     </v-list-item>
@@ -68,7 +66,7 @@ export default {
 .v-list-item__content > * {
   font-size: 12px;
 }
-.sortable-ghost{
-  opacity:0.4;
+.sortable-ghost {
+  opacity: 0.4;
 }
 </style>

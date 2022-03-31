@@ -1,9 +1,29 @@
 <template>
   <v-list flat>
-     <h2 
+    <div>
+      <h2 
       :style="{color: board.color, backgroundColor: board.backgroundColor}"
-      class="text-center title-font handle-board"
-      >{{ board.title }}</h2>
+      class=" title-font board-header"
+      >
+      
+     <div> {{ board.title }}</div> 
+     <v-list-item-action v-if="$store.state.boardSorting">
+          <v-btn icon class="handle-board">
+            <v-icon  
+            :style="{color: board.color}"         
+            >mdi-drag-horizontal</v-icon>
+          </v-btn>
+        </v-list-item-action>
+      <v-list-item-action >
+        <board-menu :board="board"/>
+      </v-list-item-action>
+      
+      
+      </h2>
+    </div>
+     
+ 
+
     <draggable handle=".handle"  group="task" @change="log">
      
       <task      
@@ -19,10 +39,13 @@
 
 <script>
 import draggable from "vuedraggable";
+
 export default {
   components: {
     Task: require("@/components/Todo/Task").default,
-    draggable,
+    BoardMenu: require("@/components/Todo/BoardMenu").default,
+    draggable
+   
   },
   props: ["board"],
   data() {
@@ -52,5 +75,13 @@ export default {
   height: 100%;
   width: 100%;
   padding: 3px;
+}
+.board-header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 15px;
+  box-shadow: 1px 2px 3px 1px  rgba(0,0,0,.2);
+  margin-bottom: 5px;
 }
 </style>

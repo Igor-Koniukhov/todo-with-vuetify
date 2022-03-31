@@ -7,50 +7,49 @@ export default new Vuex.Store({
   state: {
     appTitle: process.env.VUE_APP_TITLE,
     search: null,
-    board:{
-      list:1,
-      title:'',
-      backgroundColor: '',
-      
+    board: {
+      list: 1,
+      title: "",
+      backgroundColor: "",
     },
-    boards:[
-    {
-      list:1,
-      title:'Created',
-      backgroundColor: '#fffff',
-      color: 'green' 
-    },
-    {
-      list:2,
-      title:'In progress',
-      backgroundColor: 'yellow' ,
-      color: '#333333',
-    },
-    {
-      list:3,
-      title:'Done',
-      backgroundColor: 'blue', 
-      color:'yellow'
-    }
+    boards: [
+      {
+        list: 1,
+        title: "Created",
+        backgroundColor: "#fffff",
+        color: "green",
+      },
+      {
+        list: 2,
+        title: "In progress",
+        backgroundColor: "#F1F50A",
+        color: "#333333",
+      },
+      {
+        list: 3,
+        title: "Done",
+        backgroundColor: "blue",
+        color: "yellow",
+      },
     ],
     tasks: [
       {
         id: 1,
-        list:1,
+        list: 1,
         title: "Do something!",
         done: false,
         dueDate: null,
       },
       {
         id: 2,
-        list:1,
+        list: 1,
         title: "Get bananas",
         done: false,
         dueDate: null,
       },
       {
         id: 3,
-        list:1,
+        list: 1,
         title: "Eat bananas",
         done: false,
         dueDate: null,
@@ -58,6 +57,7 @@ export default new Vuex.Store({
     ],
     addBoard: false,
     sorting: false,
+    boardSorting: false,
     snackbar: {
       show: false,
       text: "",
@@ -81,6 +81,9 @@ export default new Vuex.Store({
     deleteTask(state, id) {
       state.tasks = state.tasks.filter((task) => task.id !== id);
     },
+    deleteBoard(state, list) {
+      state.boards = state.boards.filter((board) => board.list !== list);
+    },
     showSnackbar(state, text) {
       let timeout = 0;
       if (state.snackbar.show) {
@@ -103,20 +106,31 @@ export default new Vuex.Store({
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
       task.dueDate = payload.dueDate;
     },
+    updateBoard(state, payload) {
+      
+      let board = state.boards.filter((board) => board.list === payload.list)[0];
+      console.log(board.backgroundColor, payload.backgroundColor, "mutations")
+      board.list = payload.list
+      board.title=payload.title
+      board.backgroundColor=payload.backgroundColor
+      board.color=payload.color
+    },
     setSearch(state, value) {
       state.search = value;
     },
-    toggleSorting(state){
-      state.sorting=!state.sorting
+    toggleSorting(state) {
+      state.sorting = !state.sorting;
     },
-    toggleAddBoard(state){
-      state.addBoard=!state.addBoard
+    toggleBoardSorting(state) {
+      state.boardSorting = !state.boardSorting;
     },
-    addBoard(state, payload){
-      state.boards.push(payload)
+    toggleAddBoard(state) {
+      state.addBoard = !state.addBoard;
+    },
+    addBoard(state, payload) {
+      state.boards.push(payload);
       console.log(state.boards);
-    }
-
+    },
   },
   actions: {
     addTask({ commit }, newTaskTitle) {
@@ -127,6 +141,10 @@ export default new Vuex.Store({
       commit("deleteTask", id);
       commit("showSnackbar", "Task Deleted!");
     },
+    deleteBoard({ commit }, id) {
+      commit("deleteBoard", id);
+      commit("showSnackbar", "Board Deleted!");
+    },
     updateTasktitle({ commit }, payload) {
       commit("updateTasktitle", payload);
       commit("showSnackbar", "Task updated!");
@@ -135,17 +153,20 @@ export default new Vuex.Store({
       commit("updateTaskDueDate", payload);
       commit("showSnackbar", "Date updated!");
     },
-  },
-  getters:{
-    tasksFiltered(state){
-      if(!state.search){
-        return state.tasks
-      }
-      return state.tasks.filter(task =>
-         task.title.toLowerCase()
-         .includes(state.search.toLowerCase()))
+    updateBoard({commit}, payload){
+      commit("updateBoard", payload);
+      commit("showSnackbar", "Board updated!");
     }
-
+  },
+  getters: {
+    tasksFiltered(state) {
+      if (!state.search) {
+        return state.tasks;
+      }
+      return state.tasks.filter((task) =>
+        task.title.toLowerCase().includes(state.search.toLowerCase())
+      );
+    },
   },
   modules: {},
 });

@@ -19,7 +19,8 @@
     </div>
 
     <no-tasks v-else />
-    <button-done-sorting v-if="$store.state.sorting" />
+    <button-done-sorting v-if="$store.state.sorting" :toggleSorting="toggleSorting"/>
+    <button-done-sorting v-if="$store.state.boardSorting" :toggleSorting="toggleBoardSorting"/>
   </div>
 </template>
 
@@ -37,6 +38,13 @@ export default {
       .default,
       draggable,
   }, 
+  data(){
+    return{
+      toggleSorting: {comm:"toggleSorting", buttonTitle: "finish task sorting"},
+      toggleBoardSorting: {comm:"toggleBoardSorting", buttonTitle: "finish board sorting"},
+    }
+    
+  }
   
 };
 </script>

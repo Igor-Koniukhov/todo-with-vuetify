@@ -1,13 +1,16 @@
 <template>
   <v-btn
-   @click="$store.commit('toggleSorting')"
+   @click="$store.commit(toggleSorting.comm)"
    color="primary"
    class="button-done-sorting"
-   > Done Sorting </v-btn>
+   > {{toggleSorting.buttonTitle}} </v-btn>
 </template>
 
 <script>
-export default {};
+export default {
+props:['toggleSorting']
+
+};
 </script>
 
 <style lang="scss">
