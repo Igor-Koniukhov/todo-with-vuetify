@@ -7,26 +7,57 @@ export default new Vuex.Store({
   state: {
     appTitle: process.env.VUE_APP_TITLE,
     search: null,
+    board:{
+      list:1,
+      title:'',
+      backgroundColor: '',
+      
+    },
+    boards:[
+    {
+      list:1,
+      title:'Created',
+      backgroundColor: '#fffff',
+      color: 'green' 
+    },
+    {
+      list:2,
+      title:'In progress',
+      backgroundColor: 'yellow' ,
+      color: '#333333',
+    },
+    {
+      list:3,
+      title:'Done',
+      backgroundColor: 'blue', 
+      color:'yellow'
+    }
+    ],
     tasks: [
       {
         id: 1,
-        title: "Wake up",
+        list:1,
+        title: "Do something!",
         done: false,
-        dueDate: "2022-03-27",
+        dueDate: null,
       },
       {
         id: 2,
+        list:1,
         title: "Get bananas",
         done: false,
-        dueDate: "2022-03-27",
+        dueDate: null,
       },
       {
         id: 3,
+        list:1,
         title: "Eat bananas",
         done: false,
         dueDate: null,
       },
     ],
+    addBoard: false,
+    sorting: false,
     snackbar: {
       show: false,
       text: "",
@@ -36,6 +67,7 @@ export default new Vuex.Store({
     addTask(state, newTaskTitle) {
       let newTask = {
         id: Date.now(),
+        list: 1,
         title: newTaskTitle,
         done: false,
         dueDone: null,
@@ -74,6 +106,17 @@ export default new Vuex.Store({
     setSearch(state, value) {
       state.search = value;
     },
+    toggleSorting(state){
+      state.sorting=!state.sorting
+    },
+    toggleAddBoard(state){
+      state.addBoard=!state.addBoard
+    },
+    addBoard(state, payload){
+      state.boards.push(payload)
+      console.log(state.boards);
+    }
+
   },
   actions: {
     addTask({ commit }, newTaskTitle) {

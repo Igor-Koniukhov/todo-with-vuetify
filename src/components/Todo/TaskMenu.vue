@@ -34,7 +34,12 @@
       v-if="dialogs.edit"
       @close="dialogs.edit = false"
       :task="task"
-    />
+    /> 
+    <dialog-add-board
+      v-if="dialogs.board"
+      @close="dialogs.board = false"
+      :task="task"
+    />    
   </div>
 </template>
 
@@ -45,7 +50,8 @@ export default {
     dialogs: {
       delete: false,
       edit: false,
-      dueDate: false
+      dueDate: false,
+      board: false
     },
     items: [
       {
@@ -69,6 +75,22 @@ export default {
           this.dialogs.delete = true;
         },
       },
+      {
+        title: "Sort",
+        icon: "mdi-drag-horizontal-variant",
+        click() {
+          this.$store.commit('toggleSorting')
+        },
+      },
+      {
+        title: "Add Board",
+        icon: "mdi-table-column-plus-before",
+        click() {
+          console.log("add board");
+          this.dialogs.board = true;
+          this.$store.commit('toggleAddBoard')
+        },
+      },
     ],
   }),
   methods: {
@@ -80,6 +102,7 @@ export default {
     "dialog-delete": require("@/components/Dialogs/DialogDelete.vue").default,
     "dialog-edit": require("@/components/Dialogs/DialogEdit.vue").default,
     'dialog-due-date': require("@/components/Dialogs/DialogDueDate.vue").default,
+    'dialog-add-board': require("@/components/Dialogs/DialogAddBoard.vue").default,
   },
 };
 </script>

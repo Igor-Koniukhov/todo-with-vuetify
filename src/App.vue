@@ -4,14 +4,10 @@
       <v-img class="avatar-back" height="170" src="wheat.jpg">
         <div class="img-justify pt-6">
           <v-avatar size="60">
-            <img
-             class="img-avatar"
-             src="i_koniukhov.jpg"
-              alt="Igor"
-               />
+            <img class="img-avatar" src="i_koniukhov.jpg" alt="Igor" />
           </v-avatar>
           <div class="avatar-text avatar-text__frederica">Koniukhov Igor</div>
-          <div class="avatar-text ">
+          <div class="avatar-text">
             <small>ikoniukov </small>
           </div>
         </div>
@@ -48,20 +44,15 @@
         >
         </v-img>
       </template>
-      <v-container
-       class="header-container pa-0"
-       >
+      <v-container class="header-container pa-0">
         <v-row>
           <v-app-bar-nav-icon @click="drawer = !drawer"></v-app-bar-nav-icon>
           <v-spacer></v-spacer>
           <search />
         </v-row>
         <v-row class="mt-8">
-          <h1
-            class="ml-4 text-h5 mt-8 federica-font"
-            
-          >
-            {{$store.state.appTitle}}
+          <h1 class="ml-4 text-h5 mt-8 federica-font">
+            {{ $store.state.appTitle }}
           </h1>
         </v-row>
         <live-date-time :drawer="drawer"></live-date-time>
@@ -86,28 +77,28 @@ export default {
     items: [
       { title: "Todo", icon: "mdi-format-list-checks", to: "/" },
       { title: "About", icon: "mdi-help-box", to: "/about" },
+      { title: "Test", icon: "mdi-help-box", to: "/test" },
     ],
   }),
-  computed:{
-    appTitle(){
-      return process.env.VUE_APP_TITLE
-    }
-  }
+  computed: {
+    appTitle() {
+      return process.env.VUE_APP_TITLE;
+    },
+  },
 };
 </script>
 <style lang="scss">
-.header-container{
+.header-container {
   max-width: none !important;
 }
 
 .container {
   .federica-font {
     font-family: "Fredericka the Great", cursive !important;
-    
-    }
-    .federica-font__red {
-      font-family: "Fredericka the Great", cursive !important;
-      color: red;
+  }
+  .federica-font__red {
+    font-family: "Fredericka the Great", cursive !important;
+    color: red;
   }
 }
 .v-responsive__content {
@@ -120,15 +111,14 @@ export default {
   }
 }
 .avatar-text {
-  color: #f3f3f3;  
+  color: #f3f3f3;
   z-index: 150;
-  &__frederica{
-    font-family: "Fredericka the Great", cursive ;
+  &__frederica {
+    font-family: "Fredericka the Great", cursive;
   }
-  
 }
 .avatar-back {
-  position: relative;  
+  position: relative;
   &:before {
     display: block;
     content: "";
