@@ -4,6 +4,7 @@ In that project used such technologies and libs:
 - [Material Design Icons](https://materialdesignicons.com/);
 - [Stunning free images](https://pixabay.com/);
 - js library for date format - [date-fns](https://date-fns.org/);
+- [SortableJS/Vue.Draggbale](https://github.com/SortableJS/Vue.Draggable)
 
 ## Project setup
 ```

@@ -2,6 +2,7 @@
   <div>
     <v-list-item
       @click="doneTask(task.id)"
+      class="white"
       :class="task.done ? 'yellow lighten-4' : 'indigo lighten-4'"
       :ripple="false"
     >
@@ -68,5 +69,9 @@ export default {
 }
 .sortable-ghost {
   opacity: 0.4;
+  
+}
+.sortable-drag{
+  box-shadow:0 0 10px rgba(0,0,0,.3);
 }
 </style>

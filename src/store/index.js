@@ -54,6 +54,20 @@ export default new Vuex.Store({
         done: false,
         dueDate: null,
       },
+      {
+        id: 4,
+        list: 2,
+        title: "Move task",
+        done: false,
+        dueDate: null,
+      },
+      {
+        id: 5,
+        list: 2,
+        title: "New task",
+        done: false,
+        dueDate: null,
+      },
     ],
     addBoard: false,
     sorting: false,
@@ -106,14 +120,19 @@ export default new Vuex.Store({
       let task = state.tasks.filter((task) => task.id === payload.id)[0];
       task.dueDate = payload.dueDate;
     },
+    setTasks(state, tasks) {
+      console.log(tasks)
+      state.tasks = tasks;
+    },
     updateBoard(state, payload) {
-      
-      let board = state.boards.filter((board) => board.list === payload.list)[0];
-      console.log(board.backgroundColor, payload.backgroundColor, "mutations")
-      board.list = payload.list
-      board.title=payload.title
-      board.backgroundColor=payload.backgroundColor
-      board.color=payload.color
+      let board = state.boards.filter(
+        (board) => board.list === payload.list
+      )[0];
+      console.log(board.backgroundColor, payload.backgroundColor, "mutations");
+      board.list = payload.list;
+      board.title = payload.title;
+      board.backgroundColor = payload.backgroundColor;
+      board.color = payload.color;
     },
     setSearch(state, value) {
       state.search = value;
@@ -153,10 +172,10 @@ export default new Vuex.Store({
       commit("updateTaskDueDate", payload);
       commit("showSnackbar", "Date updated!");
     },
-    updateBoard({commit}, payload){
+    updateBoard({ commit }, payload) {
       commit("updateBoard", payload);
       commit("showSnackbar", "Board updated!");
-    }
+    },
   },
   getters: {
     tasksFiltered(state) {
